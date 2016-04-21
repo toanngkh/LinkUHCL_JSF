@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Login</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p>
+            Username:&nbsp;&nbsp;
+            <h:inputText id="id" required="true" requiredMessage="This field cannot be empty"
+                         value="#{loginBean.id}" validatorMessage="username must be between 3 and 20 characters">
+                         <f:validateLength minimum="3" maximum="20"/>
+            </h:inputText>
+            </p>
+            <p>
+                Password:&nbsp;&nbsp;
+                <h:inputText id="psw" required="true" requiredMessage="This field cannot be empty"
+                             value="#{loginBean.password}">
+                </h:inputText>
+            </p>
+            <p>
+                <h:commandButton id="submit" value="Login" action="#{loginBean.Login()}"/>
+            </p>
+        </h:form>
+    </h:body>
+</html>
+

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <head>
+        <title>Add position</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <h:body>
+        <h:form>
+            <h1>New position</h1>
+            <p style="color: red">Field with (*) is required</p>
+            <p>Company (*):</p>
+            <p><h:message for="company" style="color: red"/></p>
+            <p><h:inputText id="company" value="#{positionBean.company}" required="true" 
+                            requiredMessage="Please enter company name"/></p>
+            <p>Title (*):</p>
+            <p><h:message for="title" style="color: red"/></p>
+            <p><h:inputText id="title" value="#{positionBean.title}" required="true" 
+                            requiredMessage="Please enter title"/></p>
+            <p>Location:</p>
+            <p><h:inputText id="location" value="#{positionBean.location}"/></p>
+            <p>Time period (*):</p>
+            <p><h:message for="startDay" style="color: red"/></p>
+            <p>From:&nbsp;  
+                <h:inputText id="startDay" value="#{positionBean.startDay}" required="true" 
+                             a:placeholder="yyyy-mm-dd" size="10" 
+                             requiredMessage="Please enter starting day">
+                    <f:convertDateTime pattern="yyyy-MM-dd" />
+                </h:inputText>
+                &nbsp;To:&nbsp;
+                <h:inputText id="endDay" value="#{positionBean.endDay}" required="true" 
+                             a:placeholder="yyyy-mm-dd" size="10"
+                             requiredMessage="Please enter ending day">
+                    <f:convertDateTime pattern="yyyy-MM-dd" />
+                </h:inputText>
+            </p>
+            
+            <!--TO DO: add event on-click to hide/show end month, year-->
+            <h:selectBooleanCheckbox id="chkCurrentlyWorking" /> &nbsp; I currently work here
+            <p>Description:</p>
+            <p>
+                <h:inputTextarea id="description" rows="5" cols="50" />
+            </p>
+            <p>
+                <!--TO DO: add action save information-->
+                <h:commandButton id="btnSave" action="#{positionBean.addNewPosition()}" value="Save" style="background-color: cyan"/>
+                &nbsp;
+                <h:button value="Cancel" outcome="profile.xhtml"/>
+            </p>
+        </h:form>
+    </h:body>
+</html>

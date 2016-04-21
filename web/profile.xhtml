@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <head>
+        <title>Profile</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <h:body>
+        <h1 id="name-header">#{loginBean.loginAccount.accHolderName}</h1>
+        <h:form>
+            <div id="brief">
+                <!--Show profile-->
+                <p id="profession">
+                    <h:outputText value="#{loginBean.loginAccount.DisplayProfession()}"/>
+                </p>
+                <p id="city">
+                    <h:outputText value="#{loginBean.loginAccount.city}"/>
+                    &nbsp; | &nbsp;
+                    <h:outputText value="#{loginBean.loginAccount.DisplayIndustry()}"/>
+                </p>
+                <p id="recentEmployer">
+                    Recent employer: <h:outputText value="#{loginBean.loginAccount.DisplayRecentEmployer()}"/>
+                </p>
+                <p id="recentEducation">
+                    Education: <h:outputText value="#{loginBean.loginAccount.DisplayRecentEducation()}"/>
+                </p>
+            </div>
+            <div id="experience">
+                <h3>Working experiences:</h3>
+                <h:dataTable value="#{loginBean.loginAccount.expList}" var="ex" border="1">
+                    <h:column>
+                        <h:outputText value="#{ex.toString()}" escape="false"/>
+                    </h:column>
+                    <h:column>
+                        <h:commandButton value="Edit"/>
+                    </h:column>
+                    <h:column>
+                        <h:commandButton value="Delete" onclick="if(! confirm('Do you want to delete?')) {return false;}; return true;" action="#{loginBean.loginAccount.DeleteExperienceRow(ex)}"/>
+                    </h:column>
+                </h:dataTable>
+                <h:button id="createExperience" outcome="newposition.xhtml" value="Add position"/>
+            </div>
+            <div id="educations">
+                <!--show education-->
+                <h3>Education:</h3>
+                <h:dataTable value="#{loginBean.loginAccount.eduList}" var="ed" border="1">
+                    <h:column>
+                        <h:outputText value="#{ed.toString()}" escape="false"/>
+                    </h:column>
+                    <h:column>
+                        <h:commandButton value="Edit"/>
+                    </h:column>
+                    <h:column>
+                        <h:commandButton value="Delete" onclick="if(! confirm('Do you want to delete?')) {return false;}; return true;" action="#{loginBean.loginAccount.DeleteEducationRow(ed)}"/>
+                    </h:column>
+                </h:dataTable>
+            </div>
+            <div>
+                <!--show skills-->
+                <h3>Skills:</h3>
+                <h:dataTable value="#{loginBean.loginAccount.skillList}" var="s" border="1">
+                    <h:column>
+                        <f:facet name="header">Endorse</f:facet>
+                        #{s.endorseCount}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Skill</f:facet>
+                        #{s.skillName}
+                    </h:column>
+                    <h:column>
+                        <h:commandButton value="Edit"/>
+                    </h:column>
+                    <h:column>
+                        <h:commandButton value="Delete" onclick="if(! confirm('Do you want to delete?')) {return false;}; return true;" action="#{loginBean.loginAccount.DeleteSkillRow(s)}"/>
+                    </h:column>
+                </h:dataTable>
+            </div>
+        </h:form>
+        
+    </h:body>
+</html>
